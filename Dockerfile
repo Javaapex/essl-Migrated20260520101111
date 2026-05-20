@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-17 AS build
+FROM maven:3.9.9-eclipse-temurin-25 AS build
 WORKDIR /app
 COPY . .
 RUN mvn -q -B -Dmaven.test.skip=true clean package
@@ -17,7 +17,7 @@ RUN set -eux; \
     echo "Selected JAR_PATH=$JAR_PATH"; \
     cp "$JAR_PATH" /app/app.jar
 
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:25-jre
 WORKDIR /app
 COPY --from=build /app/app.jar /app/app.jar
 ENV APP_MAIN_CLASS="com.example.project.ProjectApplication"
