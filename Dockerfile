@@ -1,7 +1,7 @@
-FROM maven:3.9.9-eclipse-temurin-25 AS build
+FROM eclipse-temurin:25-jdk AS build
 WORKDIR /app
 COPY . .
-RUN mvn -q -B -Dmaven.test.skip=true clean package
+RUN if [ -f ./mvnw ]; then chmod +x ./mvnw && ./mvnw -q -B -Dmaven.test.skip=true clean package; else apt-get update && apt-get install -y --no-install-recommends maven && rm -rf /var/lib/apt/lists/* && mvn -q -B -Dmaven.test.skip=true clean package; fi
 RUN set -eux; \
     JAR_PATH=''; \
     # Prefer Spring Boot executable jars first (Boot loader present). \
