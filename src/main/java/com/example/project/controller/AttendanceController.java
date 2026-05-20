@@ -91,6 +91,7 @@ public class AttendanceController {
         try {
             target = (date != null && !date.isBlank()) ? LocalDate.parse(date) : LocalDate.now();
         } catch (Exception e) {
+
             target = LocalDate.now();
         }
 
@@ -129,6 +130,7 @@ public class AttendanceController {
                 return ResponseEntity.ok(out);
             }
         } catch (Exception e) {
+
             log.error("Failed to get attendance data", e);
             Map<String, Object> err = new HashMap<>();
             err.put("error", e.getMessage());
@@ -188,6 +190,7 @@ public class AttendanceController {
             res.put("success", true);
             return ResponseEntity.ok(res);
         } catch (Exception e) {
+
             log.error("Failed to send email", e);
             Map<String, Object> res = new HashMap<>();
             res.put("success", false);
@@ -230,6 +233,7 @@ public class AttendanceController {
         try {
             target = (date != null) ? LocalDate.parse(date) : LocalDate.now();
         } catch (Exception e) {
+
             target = LocalDate.now();
         }
 
@@ -311,7 +315,7 @@ public class AttendanceController {
             sb.append("");
             sb.append("<p style='font-size:16px;'>")
                     .append("<span style='display:inline-block;width:15px;height:15px;background-color:tomato;")
-                    .append("margin-right:5px;border:1px solid #000;'></span> ")
+                    .append("margin-right:5px;border:1px solid #000
                     .append(redCount).append(" Records (Less than 5 hrs)</p>");
 
             sb.append("<p style='font-size:16px;'>")
@@ -326,7 +330,7 @@ public class AttendanceController {
 
             subject = target.format(
                     java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-                    + " - Attendance Report Chennai (408)";
+                    + " - Attendance Report Chennai (408
 
             // If UI didn't supply recipients, fall back to controller defaults
             if (to == null || to.isBlank()) {
@@ -383,6 +387,7 @@ public class AttendanceController {
             }
 
         } catch (Exception e) {
+
             log.error("Error building attendance email", e);
             resp.put("success", false);
             resp.put("message", "Failed to build email: " + e.getMessage());
@@ -409,6 +414,7 @@ public class AttendanceController {
         try {
             target = (date != null && !date.isBlank()) ? LocalDate.parse(date) : LocalDate.now();
         } catch (Exception e) {
+
             target = LocalDate.now();
         }
 
@@ -449,6 +455,7 @@ public class AttendanceController {
             reportLogService.save(logEntry);
             return ResponseEntity.ok(resp);
         } catch (Exception e) {
+
             log.error("Failed to send weekly attendance email", e);
             resp.put("success", false);
             resp.put("message", e.getMessage());
@@ -472,6 +479,7 @@ public class AttendanceController {
         try {
             target = (date != null && !date.isBlank()) ? LocalDate.parse(date) : LocalDate.now();
         } catch (Exception e) {
+
             target = LocalDate.now();
         }
 
@@ -480,6 +488,7 @@ public class AttendanceController {
             String html = weeklyReportService.buildWeeklyReportHtml(range.getStart(), range.getEnd());
             return ResponseEntity.ok().header("Content-Type", "text/html; charset=UTF-8").body(html);
         } catch (Exception e) {
+
             log.error("Failed to build weekly preview", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to build weekly preview: " + e.getMessage());
         }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class SoapClient {
 
-    private static final String SOAP_URL = "http://192.168.0.100:90/iclock/WebAPIService.asmx";
+    private static final String SOAP_URL = "http://192
     private static final String SOAP_ACTION = "http://tempuri.org/GetTransactionsLog";
 
     // Login credentials (From Postman)
@@ -16,23 +16,23 @@ public class SoapClient {
 
     public SOAPMessage callSoap(String fromDate, String toDate) throws Exception {
 
-        SOAPConnectionFactory factory = SOAPConnectionFactory.newInstance();
+        SOAPConnectionFactory factory = SOAPConnectionFactory.getDeclaredConstructor().getDeclaredConstructor().getDeclaredConstructor().newInstance() // Migration: Deprecated Class.newInstance() - Source: Java 21 → Target: Java 25 // Migration: Deprecated Class.getDeclaredConstructor().newInstance() // Migration: Deprecated Class.newInstance() - Source: Java 21 → Target: Java 25 - Source: Java 21 → Target: Java 25 // Migration: Deprecated Class.getDeclaredConstructor().getDeclaredConstructor().newInstance() // Migration: Deprecated Class.newInstance() - Source: Java 21 → Target: Java 25 // Migration: Deprecated Class.getDeclaredConstructor().newInstance() // Migration: Deprecated Class.newInstance() - Source: Java 21 → Target: Java 25 - Source: Java 21 → Target: Java 25 - Source: Java 21 → Target: Java 25;
         SOAPConnection connection = factory.createConnection();
 
         SOAPMessage request = buildRequest(fromDate, toDate);
         SOAPMessage response = connection.call(request, SOAP_URL);
 
         // Debug print (safe)
-        System.out.println("\n===== SOAP RESPONSE =====");
+        System.out.println
         response.writeTo(System.out);
-        System.out.println("\n==========================\n");
+        System.out.println
 
         return response;
     }
 
     private SOAPMessage buildRequest(String from, String to) throws Exception {
 
-        MessageFactory msgFactory = MessageFactory.newInstance();
+        MessageFactory msgFactory = MessageFactory.getDeclaredConstructor().getDeclaredConstructor().getDeclaredConstructor().newInstance() // Migration: Deprecated Class.newInstance() - Source: Java 21 → Target: Java 25 // Migration: Deprecated Class.getDeclaredConstructor().newInstance() // Migration: Deprecated Class.newInstance() - Source: Java 21 → Target: Java 25 - Source: Java 21 → Target: Java 25 // Migration: Deprecated Class.getDeclaredConstructor().getDeclaredConstructor().newInstance() // Migration: Deprecated Class.newInstance() - Source: Java 21 → Target: Java 25 // Migration: Deprecated Class.getDeclaredConstructor().newInstance() // Migration: Deprecated Class.newInstance() - Source: Java 21 → Target: Java 25 - Source: Java 21 → Target: Java 25 - Source: Java 21 → Target: Java 25;
         SOAPMessage message = msgFactory.createMessage();
 
         SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();

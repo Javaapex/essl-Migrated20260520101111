@@ -24,7 +24,7 @@ public class AttendanceCronPM {
     }
 
     /**
-     * Daily attendance email at 21:00 or 9:00 PM every day (sends today's report)
+     * Daily attendance email at 21
      */
     @Scheduled(cron = "0 0 21 * * *")
     public void sendDailyEmail() {
@@ -33,6 +33,7 @@ public class AttendanceCronPM {
             attendanceController.sendAttendanceEmailHtml(null, null, null, "Cron");
             log.info("Daily attendance email cron executed");
         } catch (Exception e) {
+
             log.error("Error while executing daily attendance cron", e);
         }
     }
@@ -56,6 +57,7 @@ public class AttendanceCronPM {
             String result = "Weekly cron triggered";
             log.info("Weekly email cron executed: {}", result);
         } catch (Exception e) {
+
             log.error("Error while executing weekly attendance cron", e);
         }
     }

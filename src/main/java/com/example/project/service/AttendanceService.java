@@ -53,13 +53,14 @@ public class AttendanceService {
             try {
                 date = LocalDate.parse(parts[1]);
             } catch (Exception e) {
+
                 continue;
             }
 
             List<LocalDateTime> inTimes = new ArrayList<>();
             List<LocalDateTime> outTimes = new ArrayList<>();
 
-            // parse timestamps (ISO format expected: 2025-11-25T10:41:50 or with fraction)
+            // parse timestamps (ISO format expected: 2025
             for (AttendanceSoapData s : logs) {
                 if (s.getTimeStamp() == null) continue;
                 LocalDateTime ts;
@@ -76,8 +77,8 @@ public class AttendanceService {
                 }
 
                 String dir = s.getDirection() == null ? "" : s.getDirection().toUpperCase().trim();
-                if (dir.equals("IN") || dir.equals("0")) inTimes.add(ts);
-                else if (dir.equals("OUT") || dir.equals("1")) outTimes.add(ts);
+                if ("IN".equals(dir) || "0".equals(dir)) inTimes.add(ts);
+                else if ("OUT".equals(dir) || "1".equals(dir)) outTimes.add(ts);
             }
 
             Collections.sort(inTimes);

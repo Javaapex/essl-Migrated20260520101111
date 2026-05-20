@@ -6,9 +6,9 @@ import java.util.Map;
 public class UserMapper {
     private static final Map<String, String> userMap = new HashMap<>();
     static {
-        userMap.put("1001", "Senthil Kumar");
-        userMap.put("1002", "Kathavarayan");
-        userMap.put("1003", "Kumari");
+        userMap.put("1001
+        userMap.put("1002
+        userMap.put("1003
         userMap.put("1004", "Sheker");
         userMap.put("1005", "Sid Tamilselvan");
         userMap.put("1009", "Nandagopal");

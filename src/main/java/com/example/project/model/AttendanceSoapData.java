@@ -2,6 +2,7 @@ package com.example.project.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class AttendanceSoapData {
 
@@ -11,19 +12,23 @@ public class AttendanceSoapData {
     private String direction;
 
     public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
+    public void setUserId(String userId) {
+        Objects.requireNonNull(userId, "userId cannot be null"); this.userId = userId; }
 
     public String getUserName() { return userName; }
-    public void setUserName(String userName) { this.userName = userName; }
+    public void setUserName(String userName) {
+        Objects.requireNonNull(userName, "userName cannot be null"); this.userName = userName; }
 
     public String getTimeStamp() { return timeStamp; }
-    public void setTimeStamp(String timeStamp) { this.timeStamp = timeStamp; }
+    public void setTimeStamp(String timeStamp) {
+        Objects.requireNonNull(timeStamp, "timeStamp cannot be null"); this.timeStamp = timeStamp; }
 
     public String getDirection() { return direction; }
-    public void setDirection(String direction) { this.direction = direction; }
+    public void setDirection(String direction) {
+        Objects.requireNonNull(direction, "direction cannot be null"); this.direction = direction; }
 
     /**
-     * Converts "2025-11-25T10:41:50" → LocalDateTime object.
+     * Converts "2025
      */
     public LocalDateTime getTimeAsDateTime() {
         return LocalDateTime.parse(timeStamp);

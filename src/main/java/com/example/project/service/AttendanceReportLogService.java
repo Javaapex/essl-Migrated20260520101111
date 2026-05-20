@@ -5,6 +5,7 @@ import com.example.project.repository.AttendanceReportLogRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class AttendanceReportLogService {
@@ -15,6 +16,7 @@ public class AttendanceReportLogService {
     }
 
     public AttendanceReportLog save(AttendanceReportLog log) {
+        Objects.requireNonNull(log, "log cannot be null");
         return repository.save(log);
     }
 

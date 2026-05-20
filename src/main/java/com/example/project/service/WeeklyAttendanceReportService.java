@@ -14,6 +14,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.Objects;
 
 @Service
 public class WeeklyAttendanceReportService {
@@ -69,7 +70,7 @@ public class WeeklyAttendanceReportService {
 
         List<LocalDate> weekDates = getWeekDatesMondayToSunday(weekStartMonday);
 
-        String subject = "(" + weekStartMonday.format(SUBJECT_DATE) + " - " + weekEndSunday.format(SUBJECT_DATE) + ") Weekly Attendance Report - Chennai (408)";
+        String subject = "(" + weekStartMonday.format(SUBJECT_DATE) + " - " + weekEndSunday.format(SUBJECT_DATE) + ") Weekly Attendance Report - Chennai (408
 
         StringBuilder html = new StringBuilder();
         html.append("<p>Dear Team,</p>");
@@ -135,7 +136,7 @@ public class WeeklyAttendanceReportService {
             String totalFormatted = minutesToHourMin(totalWeekMinutes);
 
             String totalStyle = "";
-            if (totalWeekMinutes < 25 * 60) {
+            if (totalWeekMinutes < 25
                 totalStyle = "background-color:tomato; color:black;";
                 redCount++;
             } else if (totalWeekMinutes < 35 * 60) {
@@ -211,6 +212,7 @@ public class WeeklyAttendanceReportService {
             // Consider the send successful for all recipients if no exception
             sent = totalRecipients;
         } catch (Exception e) {
+
             log.error("Failed to send weekly attendance email in bulk", e);
             // Fallback: try per-To recipient (preserve CC/BCC as empty for per-recipient sends)
             sent = 0;
@@ -232,6 +234,7 @@ public class WeeklyAttendanceReportService {
     // -------------------- Helpers --------------------
 
     public LocalDate getWeekStartMonday(LocalDate date) {
+        Objects.requireNonNull(date, "date cannot be null");
         return date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
     }
 
@@ -240,6 +243,7 @@ public class WeeklyAttendanceReportService {
      * If weeklyMode is false, returns a range with start=end=selectedDate.
      */
     public WeekRange getWeekRangeForSelectedDate(LocalDate selectedDate, boolean weeklyMode) {
+        Objects.requireNonNull(selectedDate, "selectedDate cannot be null");
         if (!weeklyMode) return new WeekRange(selectedDate, selectedDate);
         LocalDate today = LocalDate.now(ZoneId.systemDefault());
         LocalDate ref = selectedDate.equals(today) ? today : selectedDate;
@@ -297,6 +301,7 @@ public class WeeklyAttendanceReportService {
 
             return hours + "hr " + minutes + "m";
         } catch (Exception e) {
+
             return "0hr 0m";
         }
     }
@@ -310,6 +315,7 @@ public class WeeklyAttendanceReportService {
             int m = Integer.parseInt(parts[1]);
             return (h * 60) + m;
         } catch (Exception e) {
+
             return 0;
         }
     }
